@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <table style="border: 1px solid black">
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        <tr>
+          <td><%=  current_user.email  %></td>
+          <td><%=  current_user.name  %></td>
+          <td><%=  current_user.age  %></td>
+        </tr>
+      </table>
+      <%= link_to 'sign out',  destroy_user_session_path, method: :delete  %>
+    <% else %>
+      <%= link_to 'sign in', new_user_session_path %>
+      <%= link_to 'sign up', new_user_registration_path %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
